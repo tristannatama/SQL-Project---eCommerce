@@ -1,2 +1,2 @@
-# SQL-Project---eCommerce
+# SQL_Project_eCommerce
 Analyzing eCommerce Business Performance with SQL
