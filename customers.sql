@@ -24,10 +24,13 @@ from (
 group by to_char(order_purchase_timestamp, 'yyyy-mm')
 order by to_char(order_purchase_timestamp, 'yyyy-mm');
 
-select customer_id, count(customer_id)
-from orders
+select customer_unique_id, count(customer_unique_id)
+from orders o
+left join customers as cus
+on o.customer_id = cus.customer_id
 group by 1
-having count(customer_id) > 1;
+having count(customer_unique_id) > 1
+order by count(customer_unique_id) desc;
 
 with mp as(
 select 
