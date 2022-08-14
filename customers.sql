@@ -24,7 +24,7 @@ from (
 group by to_char(order_purchase_timestamp, 'yyyy-mm')
 order by to_char(order_purchase_timestamp, 'yyyy-mm');
 
-select customer_unique_id, count(customer_unique_id)
+select customer_unique_id, count(customer_unique_id) new_customers
 from orders o
 left join customers as cus
 on o.customer_id = cus.customer_id
@@ -32,13 +32,11 @@ group by 1
 having count(customer_unique_id) > 1
 order by count(customer_unique_id) desc;
 
-with mp as(
-select 
+select
 	extract(year from(order_purchase_timestamp))as tahun, 
 	count(order_purchase_timestamp) as total_orders
 from orders 
-group by 1)
-select round(avg(total_orders), 0) from mp
+group by 1
 
 
 
